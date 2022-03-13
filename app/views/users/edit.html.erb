@@ -1,0 +1,45 @@
+<!--プロフィール編集画面-->
+<p id="notice" class></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h2>User info</h2>
+
+      <!--サクセスメッセージ-->
+        <p id="notice"></p>
+
+      <!--エラーメッセージ-->
+        <div class="error">
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this product from being saved:</h2>
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+
+      <!--プロフィール編集フォーム-->
+      <%= form_with model:@user, local:true do |f| %>
+        <div class="form-group">
+          <label>Name</label>
+          <%= f.text_field :name, class:"form-control user_name" %>
+        </div>
+        <div class="form-group">
+          <label>Image</label>
+          <%= f.file_field :profile_image, class:"form-control-file user_image" %>
+        </div>
+        <div class="form-group">
+          <label>Introduction</label>
+          <%= f.text_area :introduction, class:"form-control user_introduction" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit class:"btn btn-secondary" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
