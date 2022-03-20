@@ -1,13 +1,23 @@
 <!--コメント一覧の部分テンプレート-->
-<p>コメント件数：<%= book.book_comments.count %></p>
-<% book.book_comments.each do |book_comment| %>
-  <tr>
-    <td><%= image_tag book_comment.user. get_profile_image(40,40) %></td>
-    <td><%= book_comment.user.name %></td>
-    <td><%= book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %></td>
-    <td><% if user_signed_in? && current_user.id == book_comment.user_id %>
-          <%= link_to "Destroy", book_book_comment_path(book, book_comment), method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn btn-danger btn-sm", remote: true %>
-        <% end %>
-    </td>
-  </tr>
-<% end %>
+<table>
+  <tbody>
+      <p>コメント件数：<%= book.book_comments.count %></p>
+      <% book.book_comments.each do |book_comment| %>
+      <tr>
+        <td>
+          <%= link_to user_path(book_comment.user) do %>
+            <%= image_tag book_comment.user. get_profile_image(50,50) %>
+            <%= book_comment.user.name %>
+          <% end %>
+        </td>
+        <td><%= book_comment.comment %></td>
+        <td><%= book_comment.created_at.strftime('%Y/%m/%d') %></td>
+        <td>
+          <% if book_comment.user == current_user %>
+            <%= link_to "Destroy", book_book_comment_path(book, book_comment), method: :delete, class: "btn btn-danger pull_right" %>
+          <% end %>
+        </td>
+     </tr>
+     <% end %>
+  </tbody>
+</table>
