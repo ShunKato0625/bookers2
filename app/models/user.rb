@@ -8,10 +8,11 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 50 }
   validates :name, uniqueness: true
 
+  has_one_attached :profile_image
 
   has_many :books, dependent: :destroy
-
-  has_one_attached :profile_image
+  has_many :favorites,dependent: :destroy
+  has_many :book_comments,dependent: :destroy
 
   def get_profile_image(width, height)
     unless profile_image.attached?

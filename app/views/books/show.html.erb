@@ -26,9 +26,22 @@
                 <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success btn-sm" %></td>
                 <td><%= link_to "Destroy",book_path(@book.id),method: :delete, "data-confirm" => "Are you sure?" ,class: "btn btn-danger btn-sm"%></td>
               <% end %>
+              <td>
+                <div id="book_<%= @book.id %>">
+                  <%= render 'favorites/favorite', book: @book %>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
+        <table>
+          <tbody id="comment_area">
+            <%= render 'book_comments/comment_index', book: @book %>
+          </tbody>
+        </table>
+        <div  id="comment_form">
+          <%= render "book_comments/comment_form", book: @book, comment: @comment %>
+        </div>
       </div>
     </div>
   </div>
