@@ -1,29 +1,31 @@
-<h2>Follow Users</h2>
-
-<tr>
- <% if @users.exists? %>
-  <tr><% if @user.profile_image.attached? %>
-    <td>
-      <%= image_tag @user.profile_image,size:"40x40" %>
-    </td>
-  <% else %>
-    <td>
-      <%= image_tag'noimage',size:"40x40"%>
-    </td>
-  <% end %>
-  <th>name</th>
-  <th></th>
-  </tr>
-  <tbody>
-   <% @users.each do |user| %>
-   <tr>
-    <td><%= user.name %></td>
-    <td>フォロー数: <%= user.followings.count %></td>
-    <td>フォロワー数: <%= user.followers.count %></td>
-    <td><%= link_to "Show", user %></td>
-   <tr>
-   <% end %>
-</tbody>
- <% else %>
-  <th>ユーザーはいません</th>
-<% end %>
+<div class="container">
+  <div class="row">
+   <div class="col">
+     <h2>Follow Users</h2>
+      <% if @users.exists? %>
+         <table class="table">
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th colspan="3"></th>
+          </tr>
+    </div>
+  </div>
+  <div class="col">
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= image_tag user.get_profile_image(50,50) %></td>
+              <td><%= user.name %></td>
+              <td>フォロー数: <%= user.followings.count %></td>
+              <td>フォロワー数: <%= user.followers.count %></td>
+              <td><%= link_to "Show", user %></td>
+            </tr>
+          <% end %>
+         </table>
+        </tbody>
+      <% else %>
+        <th>ユーザーはいません</th>
+      <% end %>
+  </div>
+</div>
