@@ -11,11 +11,31 @@
         <th>introduction</th>
         <th><%= user.introduction %></th>
       </tr>
+      <tr>
+        <th>follows</th>
+        <th><%= link_to user.followings.count,user_followings_path(user.id) %>
+        </th>
+      </tr>
+      <tr>
+        <th>followers</th>
+        <th><%= link_to user.followers.count, user_followers_path(user.id) %></th>
+      </tr>
     </tbody>
   </table>
 
   <div class="row">
-      <%= link_to edit_user_path(user),class:"btn btn-outline-secondary btn-block",method: :get do %>
-        <i class="fas fa-user-cog"></i>
+    <% if user == current_user %>
+        <%= link_to edit_user_path(user),class:"btn btn-outline-secondary btn-block",method: :get do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+    <% end %>
+
+    <% unless user == current_user %> <!--自分は表示しない-->
+      <% if current_user.following?(user) %>
+        <td><%= link_to "フォロー外す", user_relationships_path(@user.id), class:"btn btn-danger", method: :delete %></td>
+      <% else %>
+        <td><%= link_to "フォローする", user_relationships_path(@user.id), class:"btn btn-success", method: :post %></td>
       <% end %>
+
+    <% end %>
   </div>
