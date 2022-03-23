@@ -30,7 +30,7 @@
                 <td><%= link_to "Destroy",book_path(@book.id),method: :delete, "data-confirm" => "Are you sure?" ,class: "btn btn-danger btn-sm"%></td>
               <% end %>
               <td>
-                <div id="book_<%= @book.id %>">
+                <div id="favorite_btn_<%= @book.id %>">
                   <%= render 'favorites/favorite', book: @book %>
                 </div>
               </td>
@@ -38,7 +38,7 @@
           </tbody>
         </table>
         <table>
-          <tbody id="comment_area">
+          <tbody id="comments_area_<%= @book.id %>">
             <%= render 'book_comments/comment_index', book: @book %>
           </tbody>
         </table>

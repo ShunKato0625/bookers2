@@ -61,3 +61,5 @@ gem "font-awesome-rails"
 gem 'font-awesome-sass'
 
 gem 'bootstrap-sass'
+
+gem 'jquery-rails'
