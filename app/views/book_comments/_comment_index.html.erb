@@ -1,7 +1,7 @@
 <!--コメント一覧の部分テンプレート-->
-<table>
-  <tbody>
-      <p>コメント件数：<%= book.book_comments.count %></p>
+<!--<table>-->
+<!--  <tbody>-->
+      <tr><td>コメント件数：<%= book.book_comments.count %></td></tr>
       <% book.book_comments.each do |book_comment| %>
       <tr>
         <td>
@@ -19,5 +19,5 @@
         </td>
      </tr>
      <% end %>
-  </tbody>
-</table>
+<!--  </tbody>-->
+<!--</table>-->
