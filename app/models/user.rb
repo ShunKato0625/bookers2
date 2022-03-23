@@ -22,6 +22,9 @@ class User < ApplicationRecord
   # 一覧画面で使う
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :possive_relationships, source: :follower
+  
+  has_many :user_rooms,dependent: :destroy
+  has_many :chats,dependent: :destroy
 
   def get_profile_image(width, height)
     unless profile_image.attached?

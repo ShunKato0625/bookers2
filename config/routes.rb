@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get 'home/about' => 'homes#about', as:'about'
   get '/search' , to: 'searches#search'
+  
+  get 'chat/:id' => 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
 
 
   resources:books,only:[:new, :create, :index, :show, :destroy, :edit, :update] do
