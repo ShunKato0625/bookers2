@@ -2,3 +2,4 @@
 $("#comments_area_<%= @book.id %>").html("<%= j(render 'book_comments/comment_index', book: @book ) %>");
 <!--フォームを送信したあとにフォームの値を空にします-->
 $("#book_comment_comment").val("");
+$('.errors').empty();
