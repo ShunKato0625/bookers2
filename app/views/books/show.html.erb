@@ -34,6 +34,7 @@
                   <%= render 'favorites/favorite', book: @book %>
                 </div>
               </td>
+              <td>閲覧数：<%= @book.impressions_count %></td>
             </tr>
           </tbody>
         </table>

@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
 
   before_action :authenticate_user!
+  impressionist :actions=> [:show]
 
   def new
     @book = Book.new
@@ -33,6 +34,7 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @user = @book.user
     @book_comment = BookComment.new
+    impressionist(@book, nil, unique: [:session_hash])
   end
 
   def destroy
