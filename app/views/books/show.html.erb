@@ -17,7 +17,7 @@
           <tbody>
             <tr>
               <td>
-              <%= link_to user_path(@user), "data-turbolinks": false do %>
+              <%= link_to user_path(@user) do %>
                 <%= image_tag @user.profile_image,size:"40x40" %><br>
                 <%= @user.name %>
               <% end %>

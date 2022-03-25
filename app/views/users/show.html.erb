@@ -96,6 +96,7 @@
           <canvas id="myChart"> </canvas>
 
     <script>
+    $(document).on('turbolinks:load', function() {
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -103,7 +104,15 @@
             labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
             datasets: [{
                 label: "投稿数",
-                data: [<%= @books.created_6days.count %>, <%= @books.created_5days.count %>, <%= @books.created_4days.count %>, <%= @books.created_3days.count %>, <%= @books.created_2days.count %>, <%= @yesterday_book.count %>, <%= @today_book.count%>],
+                data: [
+                     <%= @books.created_6days.count %>,
+                     <%= @books.created_5days.count %>,
+                     <%= @books.created_4days.count %>,
+                     <%= @books.created_3days.count %>,
+                     <%= @books.created_2days.count %>,
+                     <%= @yesterday_book.count %>,
+                     <%= @today_book.count%>
+                ],
                 backgroundColor: 'rgba(255, 80, 120, 1.0)',
                 borderColor: 'rgba(255, 80, 120, 1.0)',
                 lineTension: 0,
@@ -129,6 +138,7 @@
             }]
           },
         }
+    });
     });
 </script>
     </div>
