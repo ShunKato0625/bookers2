@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get 'home/about' => 'homes#about', as:'about'
   get '/search' , to: 'searches#search'
-  
+
   get 'chat/:id' => 'chats#show', as: 'chat'
   resources :chats, only: [:create]
 
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'relationships/followers' => 'relationships#followers', as: 'followers'
     get 'relationships/followings' => 'relationships#followings', as: 'followings'
+    get "daily_posts" => "users#daily_posts"
   end
 
 end
