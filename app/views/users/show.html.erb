@@ -71,6 +71,66 @@
               <% end %>
             </tr>
         </table>
+
+        <table class="table table-bordered">
+          <h3 class="mt-4">7日間分の投稿数</h3>
+            <tr>
+              <th>6日前</th>
+              <th>5日前</th>
+              <th>4日前</th>
+              <th>3日前</th>
+              <th>2日前</th>
+              <th>1日前</th>
+              <th>今日</th>
+            </tr>
+            <tr>
+              <td><%= @books.created_6days.count %></td>
+              <td><%= @books.created_5days.count %></td>
+              <td><%= @books.created_4days.count %></td>
+              <td><%= @books.created_3days.count %></td>
+              <td><%= @books.created_2days.count %></td>
+              <td><%= @yesterday_book.count %></td>
+              <td><%= @today_book.count %></td>
+            </tr>
+        </table>
+          <canvas id="myChart"> </canvas>
+
+    <script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+            datasets: [{
+                label: "投稿数",
+                data: [<%= @books.created_6days.count %>, <%= @books.created_5days.count %>, <%= @books.created_4days.count %>, <%= @books.created_3days.count %>, <%= @books.created_2days.count %>, <%= @yesterday_book.count %>, <%= @today_book.count%>],
+                backgroundColor: 'rgba(255, 80, 120, 1.0)',
+                borderColor: 'rgba(255, 80, 120, 1.0)',
+                lineTension: 0,
+                fill: false
+            }]
+        },
+
+       options: {
+          title: {
+            display: true,
+            text: '7日間の投稿数の比較'
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                suggestedMax: 10,
+                suggestedMin: 0,
+                stepSize: 1,
+                callback: function(value, index, values){
+                  return  value
+                }
+              }
+            }]
+          },
+        }
+    });
+</script>
     </div>
   </div>
 </div>

@@ -65,3 +65,5 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 
 gem 'impressionist'
+
+gem "chartkick"
