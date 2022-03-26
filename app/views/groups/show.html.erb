@@ -1,0 +1,32 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= render 'users/userinfo', user: current_user %>
+      <%= render 'books/newbook', book: @book %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>Group Detail</h2>
+      <table class='table table-hover table-inverse'>
+        <tr>
+            <% if @group.image.attached? %>
+          <td>
+            <%= image_tag @group.image,size:"40x40" %>
+          </td>
+            <% else %>
+          <td>
+            <%= image_tag'noimage',size:"40x40"%>
+          </td>
+            <% end %>
+          </td>
+          <td><%= @group.name %></td>
+          <td><%= @group.introduction %></td>
+          <td>
+            <% if @group.owner_id == current_user.id %>
+              <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

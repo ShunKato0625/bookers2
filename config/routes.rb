@@ -22,4 +22,6 @@ Rails.application.routes.draw do
     get "daily_posts" => "users#daily_posts"
   end
 
+  resources :groups, except: [:destroy]
+
 end
