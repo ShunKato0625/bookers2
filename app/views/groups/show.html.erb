@@ -31,8 +31,8 @@
             <td><%= @group.name %></td>
             <td><%= @group.introduction %></td>
             <td>
-              <% @group.users.each do |member| %>
-                <% member.name %><br>
+              <% @group.users.each do |user| %>
+                <li style="list-style: none;"><%= user.name %></li>
               <% end %>
             </td>
             <td>
