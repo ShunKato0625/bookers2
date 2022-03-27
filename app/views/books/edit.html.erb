@@ -28,6 +28,9 @@
             <%= f.text_area :body, class:"form-control book_body" %>
           </div>
           <div class="form-group">
+          <%= render "static_rate", book: @book %>
+          </div>
+          <div class="form-group">
             <%= f.submit class:"btn btn-success" %>
           </div>
 

@@ -20,6 +20,11 @@ class Book < ApplicationRecord
    validates :title, presence: true
    validates :body, presence: true, length: { maximum: 200 }
 
+   validates :rate, numericality: {
+    less_than_or_equal_to: 5,
+    greater_than_or_equal_to: 1
+  }, presence: true
+
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
   scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) }
   scope :created_2days, -> { where(created_at: 2.days.ago.all_day) }

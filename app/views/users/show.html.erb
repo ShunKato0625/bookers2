@@ -31,6 +31,7 @@
                 </td>
                 <td><%= link_to book.title, book_path(book) %></td> <!--book_path(詳細表示)で(|book|)の投稿(.id)を持ってくる-->
                 <td><%= book.body %></td>
+                <td><%= render "books/static_rate", book: book %></td>
                 <td>コメント数：<%= book.book_comments.count %></td> <!--each文で使えるのは|book|-->
               </tr>
             <% end %>
