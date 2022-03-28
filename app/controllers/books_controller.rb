@@ -20,12 +20,20 @@ class BooksController < ApplicationController
   end
 
   def index
-    #@books = Book.all
     @user = User.find(current_user.id)
     @book = Book.new
     to  = Time.current.at_end_of_day
     from  = (to - 6.day).at_beginning_of_day
     @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    if params[:latest]
+      @books = Book.latest
+    elsif params[:old]
+      @books = Book.old
+    elsif params[:rate_count]
+      @books = Book.rate_count
+    else
+      @books = Book.all
+    end
 
   end
 
