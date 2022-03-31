@@ -19,6 +19,10 @@
       <label>Opinion</label>
       <%= f.text_area :body, class:"form-control book_body col-xs-12" %>
     </div>
+    <div class="form-group">
+      <label>Category</label>
+      <%= f.text_field :category, class:"form-control book_category col-xs-12" %>
+    </div>
 
     <% if book.id === nil %>
     <div class="form-group" id="star">

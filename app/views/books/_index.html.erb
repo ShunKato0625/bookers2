@@ -9,6 +9,7 @@
               <th><!--ProfileImage--></th>
               <th>Title</th>
               <th>Opinion</th>
+              <th>Category</th>
               <th colspan="3"></th>
             </tr>
           </thead>
@@ -17,10 +18,14 @@
             <tr>
               <td>
                 <%= link_to (book.user) do %>
+                <%= image_tag book.user.profile_image,size:"40x40" %>
                 <% end %>
               </td>
               <td><%= link_to book.title, book_path(book.id) %></td>
               <td><%= book.body %></td>
+              <td>
+                <%= link_to book.category, search_path(content: book.category, model:"Category", method: "perfect") %></li>
+              </td>
               <td>
                 <div id="favorite_btn_<%= book.id %>">
                   <%= render 'favorites/favorite', book: book %>
@@ -32,4 +37,4 @@
             </tr>
           <% end %>
           </tbody>
-        </table>
+      </table>

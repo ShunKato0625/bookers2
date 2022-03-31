@@ -4,6 +4,8 @@ class Book < ApplicationRecord
    has_many:favorites,dependent: :destroy
    has_many:book_comments,dependent: :destroy
    has_many:favorited_users, through: :favorites, source: :user
+   has_many :book_categories, dependent: :destroy
+   has_many :categories, through: :book_categories
 
    def get_image
     unless image.attached?
@@ -25,6 +27,9 @@ class Book < ApplicationRecord
     greater_than_or_equal_to: 1
   }, presence: true
 
+   validates :category, presence: true
+
+
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
   scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) }
   scope :created_2days, -> { where(created_at: 2.days.ago.all_day) }
@@ -42,17 +47,15 @@ class Book < ApplicationRecord
 
 
    # 検索方法分岐
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @book = Book.where("title LIKE?","#{word}")
-    elsif search == "forward_match"
-      @book = Book.where("title LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @book = Book.where("title LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @book = Book.where("title LIKE?","%#{word}%")
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Book.where(title: content)
+    elsif method == 'forward'
+      Book.where('title LIKE ?', content+'%')
+    elsif method == 'backward'
+      Book.where('title LIKE ?', '%'+content)
     else
-      @book = Book.all
+      Book.where('title LIKE ?', '%'+content+'%')
     end
   end
 

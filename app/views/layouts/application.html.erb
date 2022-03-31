@@ -23,7 +23,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown" style>
             <ul class="navbar-nav ml-auto">
-                <% if user_signed_in? %>
+              <% if user_signed_in? %>
               <li>
                 <%= link_to user_path(current_user.id),class:"nav-link text-light", method: :get do %>
                   <i class="fas fa-home"></i> Home
@@ -44,6 +44,11 @@
                 <%= link_to destroy_user_session_path,class:"nav-link text-light", method: :delete do %>
                   <i class="fas fa-sign-out-alt"></i> Log out
                 <% end %>
+              </li>
+              <li>
+                <div class="search_form">
+                  <%= render "searches/category_form" %>
+                </div>
               </li>
 
             <% else %>
