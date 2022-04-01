@@ -18,25 +18,20 @@
 @import "font-awesome";
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-header.span {
-  font-size: 20px;
-}
+header.span
+  font-size: 20px
 
-.error {
-  color: red;
-}
+.error
+  color: red
 
-.btn-block{
-  display:block;
-  width:100%;
-}
+.btn-block
+  display: block
+  width: 100%
 
-.btn-info{
-  color:#fff;
-  background-coler:#17a2b8;
-  border-coler:#17a2b8;
-}
+.btn-info
+  color: #fff
+  background-coler: #17a2b8
+  border-coler: #17a2b8
 
-header {
-  color: white;
-}
+header
+  color: white
