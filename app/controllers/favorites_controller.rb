@@ -1,9 +1,5 @@
 class FavoritesController < ApplicationController
-
   before_action :authenticate_user!
-
-
-  
 
   def create
     @book = Book.find(params[:book_id])
@@ -20,7 +16,6 @@ class FavoritesController < ApplicationController
   private
 
   def book_params
-      @book= Book.find(params[:book_id])
+    @book = Book.find(params[:book_id])
   end
-
 end

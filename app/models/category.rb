@@ -1,11 +1,8 @@
 class Category < ApplicationRecord
-	has_many :book_categories, dependent: :destroy, foreign_key: 'category_id'
+  has_many :book_categories, dependent: :destroy
   has_many :books, through: :book_categories
 
-
-
   def self.search_books_for(content, method)
-
     if method == 'perfect'
       Category.where(name: content)
     elsif method == 'forward'
@@ -15,8 +12,5 @@ class Category < ApplicationRecord
     else
       Category.where('name LIKE ?', '%' + content + '%')
     end
-
-
-
   end
 end

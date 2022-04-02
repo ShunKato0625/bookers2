@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
-
   before_action :authenticate_user!
-  impressionist :actions=> [:show]
+  impressionist :actions => [:show]
 
   def new
     @book = Book.new
@@ -11,20 +10,20 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-       redirect_to book_path(@book), notice: 'You have created book successfully.'
+      redirect_to book_path(@book), notice: 'You have created book successfully.'
     else
-       @books = Book.all
-       @user = User.find(current_user.id)
-       render "index"
+      @books = Book.all
+      @user = User.find(current_user.id)
+      render "index"
     end
   end
 
   def index
     @user = User.find(current_user.id)
     @book = Book.new
-    to  = Time.current.at_end_of_day
-    from  = (to - 6.day).at_beginning_of_day
-    @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    to = Time.current.at_end_of_day
+    from = (to - 6.day).at_beginning_of_day
+    @books = Book.includes(:favorited_users).sort { |a, b| b.favorited_users.size <=> a.favorited_users.size }
     if params[:latest]
       @books = Book.latest
     elsif params[:old]
@@ -34,7 +33,6 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
-
   end
 
   def show
@@ -55,9 +53,9 @@ class BooksController < ApplicationController
   def edit
     @book = Book.find(params[:id])
     if @book.user == current_user
-       render "edit"
+      render "edit"
     else
-       redirect_to books_path
+      redirect_to books_path
     end
   end
 
@@ -65,27 +63,21 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.user_id = current_user.id
     if @book.update(book_params)
-       redirect_to book_path(@book), notice:'You have updated book successfully.'
+      redirect_to book_path(@book), notice: 'You have updated book successfully.'
     else
-       render "edit"
+      render "edit"
     end
   end
 
   def destroy
-      book = Book.find(params[:id])
-      book.destroy
-      redirect_to books_path
+    book = Book.find(params[:id])
+    book.destroy
+    redirect_to books_path
   end
-
-
 
   private
 
   def book_params
-    params.require(:book).permit(:title,:body,:rate, :category)
+    params.require(:book).permit(:title, :body, :rate, :category)
   end
-
-
 end
-
-

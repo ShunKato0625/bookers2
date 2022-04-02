@@ -181,6 +181,10 @@ describe '[STEP2] ユーザログイン後のテスト' do
     end
 
     context '削除リンクのテスト' do
+      before do
+        click_link 'Destroy'
+      end
+
       it 'application.html.erbにjavascript_pack_tagを含んでいる' do
         is_exist = 0
         open("app/views/layouts/application.html.erb").each do |line|
@@ -192,9 +196,7 @@ describe '[STEP2] ユーザログイン後のテスト' do
         end
         expect(is_exist).to eq(1)
       end
-      before do
-        click_link 'Destroy'
-      end
+
       it '正しく削除される' do
         expect(Book.where(id: book.id).count).to eq 0
       end
